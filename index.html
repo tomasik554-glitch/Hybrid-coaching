@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hybrid Coaching | Online tréning a strava na mieru</title>
-<meta name="description" content="Online coaching vo dvojici: tréningový plán na mieru v appke, nastavenie stravy a pravidelné check-iny. Tomáš (Coach Big) a Nikoletta Szabóová.">
-<meta property="og:title" content="Hybrid Coaching | Online tréneri">
+<meta name="description" content="Hybrid Coaching: online aj osobný tréning v Prešove. Tréningový plán v appke, strava na mieru a check-iny. Tréneri Tomáš (Coach Big) a Nikoletta Szabóová.">
+<meta property="og:title" content="Hybrid Coaching | Online aj osobný tréning">
 <meta property="og:description" content="Tréning + strava na mieru. Dvaja tréneri, jeden plán, tvoj výsledok.">
 <meta property="og:url" content="https://hybrid-coaching.sk">
 <meta property="og:type" content="website">
@@ -124,6 +124,11 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .price-card li::before{content:"";position:absolute;left:0;top:13px;width:14px;height:8px;border-left:2px solid var(--accent2);border-bottom:2px solid var(--accent2);transform:rotate(-45deg)}
 .price-card .btn{width:100%}
 
+.personal{margin-top:18px;display:flex;gap:24px;align-items:center;justify-content:space-between;background:linear-gradient(120deg,rgba(139,92,246,.14),var(--card) 60%)}
+.personal h3{font-size:21px}
+.personal .btn{flex-shrink:0}
+@media(max-width:760px){.personal{flex-direction:column;align-items:stretch}}
+
 /* app shots */
 .app-head{text-align:center;max-width:680px;margin:0 auto 44px}
 .app-head .lead{margin:0 auto}
@@ -234,9 +239,9 @@ footer a:hover{color:var(--text)}
 <header class="hero">
   <div class="wrap hero-grid">
    <div>
-    <span class="eyebrow anim">Online coaching vo dvojici</span>
+    <span class="eyebrow anim">Online aj osobný coaching</span>
     <h1 class="anim a2">Dvaja tréneri.<br>Jeden plán.<br><span class="grad">Tvoj výsledok.</span></h1>
-    <p class="lead anim a3">Tréning a strava na mieru, ktoré do seba zapadajú. Plán máš v appke, každý týždeň ho spolu vyhodnotíme a upravíme. Bez extrémov a bez hádania.</p>
+    <p class="lead anim a3">Tréning a strava na mieru, online odkiaľkoľvek alebo osobne v našom fitku v Prešove. Plán máš v appke, každý týždeň ho spolu vyhodnotíme a upravíme. Bez extrémov a bez hádania.</p>
     <div class="hero-ctas anim a4">
       <a href="#kontakt" class="btn btn-primary">Chcem bezplatnú konzultáciu</a>
       <a href="#cennik" class="btn btn-ghost">Pozrieť balíky</a>
@@ -244,7 +249,7 @@ footer a:hover{color:var(--text)}
     <div class="trust anim a5">
       <div><b>Desiatky</b>odtrénovaných klientov</div>
       <div><b>10+ rokov</b>praxe</div>
-      <div><b>100 %</b>online, odkiaľkoľvek</div>
+      <div><b>Online aj osobne</b>v Prešove a odkiaľkoľvek</div>
     </div>
    </div>
    <div class="hero-photos">
@@ -272,14 +277,18 @@ footer a:hover{color:var(--text)}
   <div class="wrap">
     <span class="eyebrow reveal">Kto sme</span>
     <h2 class="reveal">Prečo „hybrid“?</h2>
-    <p class="lead reveal">Lebo nedostaneš jedného trénera, ale dvoch. Na tvoj plán sa pozrú dve hlavy a spolu ti zostavíme tréning aj stravu, ktoré do seba zapadajú.</p>
+    <p class="lead reveal">Sme pár v živote aj v tréningu a spolu vedieme fitness centrum v Prešove. „Hybrid“ pre nás znamená dve veci:</p>
+    <div class="grid g2 why" style="margin-top:26px">
+      <div class="reveal card"><div class="num">2</div><h3>Dvaja tréneri, jeden plán</h3><p class="muted">Na tvoj plán sa pozrú dve hlavy. Spolu ti zostavíme tréning aj stravu, ktoré do seba zapadajú.</p></div>
+      <div class="reveal d1 card"><div class="num">⇄</div><h3>Online aj osobne</h3><p class="muted">Trénuj online odkiaľkoľvek, osobne s nami v Prešove, alebo kombinuj oboje. Plán aj progres máš stále v jednej appke.</p></div>
+    </div>
     <div class="grid g2" style="margin-top:36px">
       <div class="reveal card coach">
         <div class="photo"><img src="img/tomas.jpg" alt="Tréner Bc. Tomáš Čorba" loading="lazy"></div>
         <div>
           <h3>Bc. Tomáš „Coach Big“ Čorba</h3>
         </div>
-        <p class="muted">Osobný tréner a majiteľ fitness centra v Prešove. Pomáham ľuďom zhodiť tuk, nabrať silu a postavu bez extrémov. Stavím na poctivý silový tréning, jasný plán a pravidelnú kontrolu, aby si presne vedel, čo robiť a prečo.</p>
+        <p class="muted">Osobný tréner a spolumajiteľ fitness centra v Prešove. Pomáham ľuďom zhodiť tuk, nabrať silu a postavu bez extrémov. Stavím na poctivý silový tréning, jasný plán a pravidelnú kontrolu, aby si presne vedel, čo robiť a prečo.</p>
         <a class="ig" href="https://instagram.com/coach__big" target="_blank" rel="noopener">@coach__big →</a>
       </div>
       <div class="reveal d1 card coach">
@@ -287,7 +296,7 @@ footer a:hover{color:var(--text)}
         <div>
           <h3>Mgr. Nikoletta Szabóová</h3>
         </div>
-        <p class="muted">Trénerka a spoluzakladateľka Hybrid Coaching. Pomáha klientom vybudovať silné a zdravé telo s prístupom, ktorý sa dá dlhodobo udržať v bežnom živote, bez drastických diét a výčitiek.</p>
+        <p class="muted">Trénerka a spolumajiteľka fitness centra v Prešove. Pomáha klientom vybudovať silné a zdravé telo s prístupom, ktorý sa dá dlhodobo udržať v bežnom živote, bez drastických diét a výčitiek.</p>
         <a class="ig" href="https://instagram.com/nszaboova" target="_blank" rel="noopener">@nszaboova →</a>
       </div>
     </div>
@@ -332,7 +341,7 @@ footer a:hover{color:var(--text)}
   <div class="wrap">
     <span class="eyebrow reveal">Cenník</span>
     <h2 class="reveal">Vyber si balík</h2>
-    <p class="lead reveal">Všetky balíky sú na 1 mesiac a môžeš ich kedykoľvek predĺžiť.</p>
+    <p class="lead reveal">Online balíky sú na 1 mesiac a môžeš ich kedykoľvek predĺžiť.</p>
     <div class="grid g3" style="margin-top:40px">
       <div class="reveal card price-card">
         <h3>Basic</h3>
@@ -374,6 +383,12 @@ footer a:hover{color:var(--text)}
         <a href="#kontakt" class="btn btn-ghost">Mám záujem</a>
       </div>
     </div>
+    <div class="reveal card personal">
+      <div><span class="eyebrow" style="margin-bottom:6px">Osobne v Prešove</span>
+      <h3>Chceš trénovať aj s nami vo fitku?</h3>
+      <p class="muted">Osobné tréningy vieme spojiť s online coachingom: časť tréningov s nami, zvyšok podľa plánu v appke. Cenu a počet tréningov dohodneme na konzultácii.</p></div>
+      <a href="#kontakt" class="btn btn-primary">Mám záujem o osobné tréningy</a>
+    </div>
   </div>
 </section>
 
@@ -383,6 +398,7 @@ footer a:hover{color:var(--text)}
     <h2 class="reveal">Máš otázku?</h2>
     <div style="margin-top:30px">
       <details class="reveal"><summary>Je coaching vhodný aj pre začiatočníkov?</summary><p>Áno. Plán prispôsobíme tvojim skúsenostiam a ku každému cviku máš popis techniky. Technika sa dá skontrolovať aj z videa.</p></details>
+      <details class="reveal"><summary>Dá sa s vami trénovať aj osobne?</summary><p>Áno. Sme spolumajitelia fitness centra v Prešove, takže môžeš trénovať osobne s nami, iba online, alebo kombinovať oboje. Všetko dohodneme na bezplatnej konzultácii.</p></details>
       <details class="reveal"><summary>Potrebujem chodiť do fitka?</summary><p>Nie nevyhnutne. Plán vieme pripraviť do fitka aj na doma, podľa toho, aké vybavenie máš.</p></details>
       <details class="reveal"><summary>Ako funguje strava? Budem musieť vážiť jedlo?</summary><p>Strava je nastavená podľa tvojho cieľa a režimu. Nemusíš držať drastickú diétu ani jesť to, čo nemáš rád. Ako presne budeš stravu sledovať, sa dohodneme podľa toho, čo ti vyhovuje.</p></details>
       <details class="reveal"><summary>Ako rýchlo uvidím výsledky?</summary><p>Prvé zmeny v sile a energii väčšina klientov pocíti po 2–4 týždňoch. Viditeľné zmeny postavy prichádzajú zvyčajne po 6–12 týždňoch pravidelnej práce.</p></details>
@@ -420,9 +436,11 @@ footer a:hover{color:var(--text)}
             <select id="f-ciel" name="hlavny_ciel" required><option value="">Vyber…</option><option>Schudnúť / zhodiť tuk</option><option>Nabrať svaly</option><option>Zlepšiť silu a výkon</option><option>Zlepšiť kondíciu a zdravie</option><option>Formovanie postavy</option><option>Iné</option></select></div>
           <div class="field"><label for="f-skusenosti">Ako dlho cvičíš?</label>
             <select id="f-skusenosti" name="ako_dlho_cvici" required><option value="">Vyber…</option><option>Začínam / necvičím</option><option>Menej ako 1 rok</option><option>1–3 roky</option><option>Viac ako 3 roky</option></select></div>
+          <div class="field"><label for="f-forma">Forma spolupráce</label>
+            <select id="f-forma" name="forma_spoluprace" required><option value="">Vyber…</option><option>Online</option><option>Osobne v Prešove</option><option>Kombinácia online + osobne</option><option>Ešte neviem</option></select></div>
           <div class="field"><label for="f-kde">Kde budeš trénovať?</label>
             <select id="f-kde" name="kde_trenuje" required><option value="">Vyber…</option><option>Vo fitku</option><option>Doma</option><option>Kombinácia</option></select></div>
-          <div class="field"><label for="f-dni">Koľkokrát týždenne môžeš trénovať?</label>
+          <div class="field full"><label for="f-dni">Koľkokrát týždenne môžeš trénovať?</label>
             <select id="f-dni" name="treningov_tyzdenne" required><option value="">Vyber…</option><option>2×</option><option>3×</option><option>4×</option><option>5× a viac</option></select></div>
           <div class="field full"><label for="f-dosiahnut">Čo by si chcel/a dosiahnuť? <span class="opt">(čím konkrétnejšie, tým lepšie)</span></label>
             <textarea id="f-dosiahnut" name="co_chce_dosiahnut" required placeholder="Napr. zhodiť 8 kg do leta, zvládnuť prvý príťah, cítiť sa lepšie vo vlastnom tele…"></textarea></div>
