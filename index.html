@@ -124,6 +124,37 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .price-card li::before{content:"";position:absolute;left:0;top:13px;width:14px;height:8px;border-left:2px solid var(--accent2);border-bottom:2px solid var(--accent2);transform:rotate(-45deg)}
 .price-card .btn{width:100%}
 
+/* app shots */
+.app-head{text-align:center;max-width:680px;margin:0 auto 44px}
+.app-head .lead{margin:0 auto}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:start}
+.shot{margin:0}
+.frame{border-radius:34px;padding:7px;background:linear-gradient(160deg,#2d2d3d,#14141c);box-shadow:0 30px 60px -28px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.06);overflow:hidden}
+.frame img{width:100%;border-radius:28px;display:block}
+.shot:nth-child(even) .frame{margin-top:36px}
+figcaption{margin-top:16px;font-size:14px;color:var(--muted);text-align:center;padding:0 6px}
+figcaption b{display:block;color:var(--text);font-size:16px;margin-bottom:4px}
+@media(hover:hover){.frame{transition:transform .3s ease}.shot:hover .frame{transform:translateY(-6px)}}
+@media(max-width:900px){
+  .shots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin:0 -20px;padding:4px 20px 12px;scrollbar-width:none}
+  .shots::-webkit-scrollbar{display:none}
+  .shot{flex:0 0 62%;scroll-snap-align:center}
+  .shot:nth-child(even) .frame{margin-top:0}
+}
+
+.swipe{display:none;text-align:center;color:var(--muted);font-size:13px;margin-top:6px}
+@media(max-width:900px){.swipe{display:block}}
+
+/* reviews (pripravené) */
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:36px}
+.review{margin:0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 16px 22px}
+.review .ba{border-radius:14px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px}
+.review .ba img{width:100%;height:100%;object-fit:cover}
+.stars{color:#fbbf24;letter-spacing:2px;font-size:15px;padding:0 6px}
+.review blockquote{margin:8px 6px 14px;font-size:16px;color:#e4e4ee}
+.review figcaption{text-align:left;margin:0 6px;padding:0}
+@media(max-width:900px){.reviews{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:36px -20px 0;padding:0 20px 8px;scrollbar-width:none}.review{flex:0 0 82%;scroll-snap-align:center}}
+
 /* app */
 .app{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .app-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
@@ -264,25 +295,38 @@ footer a:hover{color:var(--text)}
 </section>
 
 <section class="app">
-  <div class="wrap app-grid">
-    <div>
-      <span class="eyebrow reveal">Vlastná appka</span>
+  <div class="wrap">
+    <div class="app-head">
+      <span class="eyebrow reveal">Vlastná appka ANT Hybrid Coach</span>
       <h2 class="reveal">Tvoj tréner v mobile</h2>
-      <p class="lead reveal">Žiadne PDF, ktoré sa stratia v galérii. Plán, zápis tréningov aj progres máš v jednej appke, ktorú sme vyvinuli pre našich klientov.</p>
-      <div class="feat reveal"><div class="ic">🏋️</div><div><h3>Tréningy krok za krokom</h3><p class="muted">Cviky, série, opakovania a váhy z minulého tréningu.</p></div></div>
-      <div class="feat reveal"><div class="ic">📈</div><div><h3>Viditeľný progres</h3><p class="muted">Vidíš, ako silnieš, a my vidíme, čo upraviť.</p></div></div>
-      <div class="feat reveal"><div class="ic">🔔</div><div><h3>Pripomienky</h3><p class="muted">Upozornenia, aby si nevynechal tréning ani check-in.</p></div></div>
+      <p class="lead reveal">Žiadne PDF, ktoré sa stratia v galérii. Tréningy, strava aj progres máš v jednej appke, ktorú sme vyvinuli pre našich klientov.</p>
     </div>
-    <div class="phone reveal" aria-hidden="true">
-      <div class="row"><b>Ahoj 👋</b>Dnes ťa čaká: Horná časť A</div>
-      <div class="start">▶ Začať tréning</div>
-      <div class="row"><b>Bench press</b>4 × 8 • minule 80 kg</div>
-      <div class="row"><b>Príťahy na hrazde</b>4 × 6–8</div>
-      <div class="row"><b>Tlaky nad hlavu</b>3 × 10</div>
-      <div class="row"><b>Posledný tréning</b>Spodná časť • pred 2 dňami</div>
+    <div class="shots">
+      <figure class="shot reveal"><div class="frame"><img src="img/app-nastenka.jpg" alt="Nástenka klienta v appke ANT Hybrid Coach" loading="lazy"></div><figcaption><b>Tvoja nástenka</b>Najbližší tréning, štatistiky a denný príjem na jednom mieste.</figcaption></figure>
+      <figure class="shot reveal d1"><div class="frame"><img src="img/app-trening.jpg" alt="Zápis tréningu v appke" loading="lazy"></div><figcaption><b>Zápis tréningu</b>Série, opakovania a váhy, plus čo si dal minule.</figcaption></figure>
+      <figure class="shot reveal d2"><div class="frame"><img src="img/app-strava.jpg" alt="Jedálniček a kalórie v appke" loading="lazy"></div><figcaption><b>Strava a makrá</b>Jedálniček, kalórie a bielkoviny, sacharidy a tuky.</figcaption></figure>
+      <figure class="shot reveal d3"><div class="frame"><img src="img/app-vaha.jpg" alt="Sledovanie váhy v appke" loading="lazy"></div><figcaption><b>Váha a progres</b>Graf váhy a pokrok týždeň po týždni.</figcaption></figure>
+    </div>
+    <p class="swipe">Potiahni prstom ⟶</p>
+  </div>
+</section>
+
+<!-- RECENZIE: sekcia je pripravená, zapne sa po doplnení skutočných recenzií a premien klientov (so súhlasom).
+<section id="recenzie">
+  <div class="wrap">
+    <span class="eyebrow reveal">Výsledky klientov</span>
+    <h2 class="reveal">Premeny, za ktoré hovoria čísla</h2>
+    <div class="reviews">
+      <figure class="review reveal">
+        <div class="ba"><img src="img/premena-1.jpg" alt="Premena klienta pred a po" loading="lazy"></div>
+        <div class="stars">★★★★★</div>
+        <blockquote>„TEXT RECENZIE OD KLIENTA“</blockquote>
+        <figcaption><b>Meno, vek</b>Výsledok, napr. −9 kg za 4 mesiace</figcaption>
+      </figure>
     </div>
   </div>
 </section>
+-->
 
 <section id="cennik">
   <div class="wrap">
