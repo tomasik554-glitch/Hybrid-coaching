@@ -110,6 +110,28 @@ details p{margin-top:12px;color:#cfcfdc}
 .cta-box .lead{margin:16px auto 30px}
 .cta-box .hero-ctas{justify-content:center}
 
+/* form */
+.form-box{max-width:760px;margin:0 auto;background:radial-gradient(ellipse at 50% 0%,rgba(139,92,246,.28),transparent 70%),var(--card);border:1px solid var(--line);border-radius:28px;padding:48px 28px}
+.form-box .head{text-align:center;margin-bottom:30px}
+.form-box .head .lead{margin:12px auto 0}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fgrid .full{grid-column:1/-1}
+@media(max-width:620px){.fgrid{grid-template-columns:1fr}.form-box{padding:36px 18px}}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#dcdce8}
+.field label .opt{color:var(--muted);font-weight:400}
+.field input,.field select,.field textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:13px 14px;color:var(--text);font:inherit;font-size:16px;outline:none;transition:border-color .15s}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
+.field select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 15px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+.sec-title{grid-column:1/-1;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-top:14px;padding-top:18px;border-top:1px solid var(--line)}
+.sec-title.first{margin-top:0;padding-top:0;border-top:none}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#cfcfdc}
+.consent input{width:20px;height:20px;margin-top:2px;flex-shrink:0;accent-color:var(--accent)}
+.form-box .btn{width:100%;margin-top:8px}
+.alt{text-align:center;margin-top:22px;color:var(--muted);font-size:14px}
+.alt a{color:var(--accent2)}
+.hp{position:absolute;left:-9999px}
+
 footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{text-decoration:none}
@@ -135,7 +157,7 @@ footer a:hover{color:var(--text)}
       <a href="#treneri">Tréneri</a>
       <a href="#cennik">Cenník</a>
       <a href="#faq">FAQ</a>
-      <a href="#kontakt" class="btn btn-primary btn-sm">Chcem začať</a>
+      <a href="#kontakt" class="btn btn-primary btn-sm">Prihláška</a>
     </div>
   </div>
 </nav>
@@ -283,14 +305,54 @@ footer a:hover{color:var(--text)}
 
 <section id="kontakt" style="padding-top:0">
   <div class="wrap">
-    <div class="cta-box">
-      <span class="eyebrow">Začni ešte dnes</span>
-      <h2>Bezplatná konzultácia</h2>
-      <p class="lead">Napíš nám na Instagram alebo email. Ozveme sa do 24 hodín a spolu zistíme, ako ti vieme pomôcť.</p>
-      <div class="hero-ctas">
-        <a href="https://ig.me/m/hybrid_coaching_sk" class="btn btn-primary" target="_blank" rel="noopener">Napísať na Instagram</a>
-        <a href="mailto:info@hybrid-coaching.sk?subject=Záujem%20o%20online%20coaching" class="btn btn-ghost">info@hybrid-coaching.sk</a>
+    <div class="form-box">
+      <div class="head">
+        <span class="eyebrow">Začni ešte dnes</span>
+        <h2>Prihláška na bezplatnú konzultáciu</h2>
+        <p class="lead">Vyplň krátky dotazník. Ozveme sa do 24 hodín a dohodneme konzultáciu.</p>
       </div>
+      <form name="prihlaska" method="POST" action="/dakujeme.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="prihlaska">
+        <p class="hp"><label>Nevypĺňaj: <input name="bot-field"></label></p>
+        <div class="fgrid">
+          <div class="sec-title first">O tebe</div>
+          <div class="field"><label for="f-meno">Meno</label><input id="f-meno" name="meno" required autocomplete="given-name"></div>
+          <div class="field"><label for="f-priezvisko">Priezvisko</label><input id="f-priezvisko" name="priezvisko" required autocomplete="family-name"></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" name="email" required autocomplete="email"></div>
+          <div class="field"><label for="f-tel">Telefón <span class="opt">(nepovinné)</span></label><input id="f-tel" type="tel" name="telefon" autocomplete="tel"></div>
+          <div class="field"><label for="f-vek">Vek</label><input id="f-vek" type="number" name="vek" min="15" max="99" required inputmode="numeric"></div>
+          <div class="field"><label for="f-pohlavie">Pohlavie</label>
+            <select id="f-pohlavie" name="pohlavie" required><option value="">Vyber…</option><option>Žena</option><option>Muž</option></select></div>
+          <div class="field"><label for="f-vyska">Výška (cm)</label><input id="f-vyska" type="number" name="vyska_cm" min="120" max="230" required inputmode="numeric"></div>
+          <div class="field"><label for="f-vaha">Váha (kg)</label><input id="f-vaha" type="number" name="vaha_kg" min="35" max="250" step="0.1" required inputmode="decimal"></div>
+
+          <div class="sec-title">Tréning a cieľ</div>
+          <div class="field"><label for="f-ciel">Hlavný cieľ</label>
+            <select id="f-ciel" name="hlavny_ciel" required><option value="">Vyber…</option><option>Schudnúť / zhodiť tuk</option><option>Nabrať svaly</option><option>Zlepšiť silu a výkon</option><option>Zlepšiť kondíciu a zdravie</option><option>Formovanie postavy</option><option>Iné</option></select></div>
+          <div class="field"><label for="f-skusenosti">Ako dlho cvičíš?</label>
+            <select id="f-skusenosti" name="ako_dlho_cvici" required><option value="">Vyber…</option><option>Začínam / necvičím</option><option>Menej ako 1 rok</option><option>1–3 roky</option><option>Viac ako 3 roky</option></select></div>
+          <div class="field"><label for="f-kde">Kde budeš trénovať?</label>
+            <select id="f-kde" name="kde_trenuje" required><option value="">Vyber…</option><option>Vo fitku</option><option>Doma</option><option>Kombinácia</option></select></div>
+          <div class="field"><label for="f-dni">Koľkokrát týždenne môžeš trénovať?</label>
+            <select id="f-dni" name="treningov_tyzdenne" required><option value="">Vyber…</option><option>2×</option><option>3×</option><option>4×</option><option>5× a viac</option></select></div>
+          <div class="field full"><label for="f-dosiahnut">Čo by si chcel/a dosiahnuť? <span class="opt">(čím konkrétnejšie, tým lepšie)</span></label>
+            <textarea id="f-dosiahnut" name="co_chce_dosiahnut" required placeholder="Napr. zhodiť 8 kg do leta, zvládnuť prvý príťah, cítiť sa lepšie vo vlastnom tele…"></textarea></div>
+          <div class="field full"><label for="f-zdravie">Zranenia alebo zdravotné obmedzenia <span class="opt">(nepovinné)</span></label>
+            <textarea id="f-zdravie" name="zranenia_obmedzenia" placeholder="Napr. bolesti chrbta, operácia kolena… Ak nič, nechaj prázdne."></textarea></div>
+
+          <div class="sec-title">Spolupráca</div>
+          <div class="field"><label for="f-balik">Ktorý balík ťa zaujíma?</label>
+            <select id="f-balik" name="balik"><option>Ešte neviem</option><option>Basic (49 €)</option><option>Standard (89 €)</option><option>Premium (149 €)</option></select></div>
+          <div class="field"><label for="f-zdroj">Ako si sa o nás dozvedel/a? <span class="opt">(nepovinné)</span></label>
+            <select id="f-zdroj" name="zdroj"><option value="">Vyber…</option><option>Instagram</option><option>Od známeho</option><option>Ant Fitgym</option><option>Google</option><option>Iné</option></select></div>
+          <div class="field full"><label for="f-poznamka">Chceš nám ešte niečo povedať? <span class="opt">(nepovinné)</span></label>
+            <textarea id="f-poznamka" name="poznamka"></textarea></div>
+
+          <div class="field full consent"><input id="f-suhlas" type="checkbox" name="suhlas_gdpr" value="áno" required><label for="f-suhlas" style="font-weight:400;margin:0">Súhlasím so spracovaním mojich osobných údajov vrátane údajov o zdraví, ktoré som uviedol/a, na účel prípravy konzultácie a tréningového plánu.</label></div>
+          <div class="full"><button type="submit" class="btn btn-primary">Odoslať prihlášku</button></div>
+        </div>
+      </form>
+      <p class="alt">Radšej píšeš? <a href="https://ig.me/m/hybrid_coaching_sk" target="_blank" rel="noopener">Instagram</a> alebo <a href="mailto:info@hybrid-coaching.sk">info@hybrid-coaching.sk</a></p>
     </div>
   </div>
 </section>
@@ -308,6 +370,11 @@ footer a:hover{color:var(--text)}
 
 <div class="mcta"><a href="#kontakt" class="btn btn-primary">Chcem bezplatnú konzultáciu</a></div>
 
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+(function(){var m=document.querySelector('.mcta'),k=document.getElementById('kontakt');
+if(!m||!k||!('IntersectionObserver' in window))return;
+new IntersectionObserver(function(e){m.style.display=e[0].isIntersecting?'none':''}).observe(k);})();
+</script>
 </body>
 </html>
