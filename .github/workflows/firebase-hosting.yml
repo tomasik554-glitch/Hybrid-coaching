@@ -1,0 +1,26 @@
+# Každý push do main nasadí web hybrid-coaching.sk na Firebase Hosting.
+name: Nasadenie na Firebase Hosting
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: hosting
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Je nastavený prístup k Firebase?
+        id: chk
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ANTFITGYM_DOCHADZKA }}
+        run: if [ -n "$SA" ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; else echo "Chýba secret FIREBASE_SERVICE_ACCOUNT_ANTFITGYM_DOCHADZKA - preskakujem."; fi
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        if: steps.chk.outputs.ok == '1'
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ANTFITGYM_DOCHADZKA }}
+          channelId: live
+          projectId: antfitgym-dochadzka

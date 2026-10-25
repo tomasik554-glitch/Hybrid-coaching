@@ -488,8 +488,7 @@ details p{animation:fadeIn .4s ease}
         <h2 class="reveal">Prihláška na bezplatnú konzultáciu</h2>
         <p class="lead reveal">Vyplň krátky dotazník. Ozveme sa do 24 hodín a dohodneme konzultáciu.</p>
       </div>
-      <form name="prihlaska" method="POST" action="/dakujeme.html" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="prihlaska">
+      <form id="prihlaska" name="prihlaska" method="POST" action="/dakujeme.html">
         <p class="hp"><label>Nevypĺňaj: <input name="bot-field"></label></p>
         <div class="fgrid">
           <div class="sec-title first">O tebe</div>
@@ -528,7 +527,7 @@ details p{animation:fadeIn .4s ease}
             <textarea id="f-poznamka" name="poznamka"></textarea></div>
 
           <div class="field full consent"><input id="f-suhlas" type="checkbox" name="suhlas_gdpr" value="áno" required><label for="f-suhlas" style="font-weight:400;margin:0">Súhlasím so spracovaním mojich osobných údajov vrátane údajov o zdraví, ktoré som uviedol/a, na účel prípravy konzultácie a tréningového plánu. Viac v <a href="/ochrana-osobnych-udajov.html" target="_blank" style="color:var(--accent2)">ochrane osobných údajov</a>.</label></div>
-          <div class="full"><button type="submit" class="btn btn-primary">Odoslať prihlášku</button></div>
+          <div class="full"><button type="submit" class="btn btn-primary">Odoslať prihlášku</button><p id="formMsg" class="alt" style="margin-top:10px" role="alert"></p></div>
         </div>
       </form>
       <p class="alt">Radšej píšeš? <a href="https://ig.me/m/hybrid_coaching_sk" target="_blank" rel="noopener">Instagram</a> alebo <a href="mailto:info@hybrid-coaching.sk">info@hybrid-coaching.sk</a></p>
@@ -549,6 +548,47 @@ details p{animation:fadeIn .4s ease}
 
 <div class="mcta"><a href="#kontakt" class="btn btn-primary">Chcem bezplatnú konzultáciu</a></div>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const app = initializeApp({
+  apiKey: "AIzaSyCeUuG_YRGhwQfztZ3aLGuWOFfMJCMA34M",
+  authDomain: "antfitgym-dochadzka.firebaseapp.com",
+  projectId: "antfitgym-dochadzka",
+  storageBucket: "antfitgym-dochadzka.firebasestorage.app",
+  messagingSenderId: "712828544384",
+  appId: "1:712828544384:web:aa2799cf12231679708d65"
+});
+const db = getFirestore(app);
+// Kľúč z web3forms.com (posiela e-mail s prihláškou). Prázdny = e-mail sa neposiela, prihláška sa aj tak uloží.
+const WEB3FORMS_KEY = "";
+const form = document.getElementById("prihlaska");
+const msg = document.getElementById("formMsg");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const fd = new FormData(form);
+  if (fd.get("bot-field")) return;               // robot
+  fd.delete("bot-field");
+  const data = Object.fromEntries(fd.entries());
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true; msg.textContent = "Odosielam…";
+  try {
+    await addDoc(collection(db, "prihlasky"), { ...data, createdAt: serverTimestamp() });
+    if (WEB3FORMS_KEY) {
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ access_key: WEB3FORMS_KEY, subject: "Nová prihláška – Hybrid Coaching: " + data.meno + " " + data.priezvisko, from_name: "Hybrid Coaching web", replyto: data.email, ...data })
+        });
+      } catch (_) { /* prihláška je už uložená */ }
+    }
+    window.location.href = "/dakujeme.html";
+  } catch (err) {
+    btn.disabled = false;
+    msg.textContent = "Nepodarilo sa odoslať. Skús znova alebo nám napíš na info@hybrid-coaching.sk.";
+  }
+});
+</script>
 <script>
 document.getElementById('y').textContent=new Date().getFullYear();
 (function(){var els=document.querySelectorAll('.reveal');

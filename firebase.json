@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "site": "hybrid-coaching-sk",
+    "public": ".",
+    "ignore": ["firebase.json", ".firebaserc", "**/.*", "**/node_modules/**", "README*"],
+    "cleanUrls": false,
+    "headers": [
+      { "source": "**/*.@(html)", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+      { "source": "img/**", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+    ]
+  }
+}
