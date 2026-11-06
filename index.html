@@ -290,6 +290,22 @@ summary::after{transition:transform .3s}
 details p{animation:fadeIn .4s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.blob,.marquee .track{animation:none!important}.progress{display:none}h2.reveal{filter:none}}
+
+/* stores + ig + toast */
+.stores{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.store{display:inline-flex;align-items:center;gap:12px;background:#000;color:#fff;border:1px solid #3a3a4a;border-radius:14px;padding:10px 20px 10px 16px;cursor:pointer;font:inherit;transition:transform .15s,border-color .2s,box-shadow .2s;min-width:190px}
+.store svg{width:26px;height:26px;flex-shrink:0}
+.store span{display:flex;flex-direction:column;align-items:flex-start;line-height:1.15;font-weight:700;font-size:18px}
+.store small{font-size:11px;font-weight:500;color:#bdbdcc;letter-spacing:.02em}
+.store:hover{border-color:var(--accent);box-shadow:0 10px 30px -12px rgba(139,92,246,.7)}
+.store:active{transform:scale(.97)}
+.igjoint{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px auto 0;max-width:520px;padding:16px 22px;border-radius:16px;text-decoration:none;color:var(--text);background:linear-gradient(120deg,rgba(139,92,246,.18),rgba(232,121,249,.12));border:1px solid rgba(139,92,246,.35);transition:transform .2s,box-shadow .2s}
+.igjoint svg{width:26px;height:26px;color:var(--accent2);flex-shrink:0}
+.igjoint b{color:var(--accent2)}
+.igjoint:hover{transform:translateY(-2px);box-shadow:0 14px 34px -16px rgba(139,92,246,.8)}
+.toast{position:fixed;left:16px;right:16px;margin:0 auto;width:fit-content;bottom:28px;transform:translateY(20px);opacity:0;pointer-events:none;z-index:120;background:#16161f;border:1px solid var(--accent);color:var(--text);padding:14px 22px;border-radius:14px;font-weight:600;box-shadow:0 20px 50px -20px rgba(0,0,0,.9);transition:opacity .25s,transform .25s;text-align:center}
+.toast.show{opacity:1;transform:none}
+@media(max-width:760px){.toast{bottom:96px}}
 </style>
 </head>
 <body>
@@ -314,7 +330,7 @@ details p{animation:fadeIn .4s ease}
    <div>
     <span class="eyebrow anim">Online aj osobný coaching</span>
     <h1 class="anim a2">Dvaja tréneri.<br>Jeden plán.<br><span class="grad">Tvoj výsledok.</span></h1>
-    <p class="lead anim a3">Tréning a strava na mieru, online odkiaľkoľvek alebo osobne v našom fitku v Prešove. Plán máš v appke, každý týždeň ho spolu vyhodnotíme a upravíme. Bez extrémov a bez hádania.</p>
+    <p class="lead anim a3">Tréning a strava na mieru, online odkiaľkoľvek alebo osobne v našom Ant Fitgym v Prešove. Plán máš v appke, každý týždeň ho spolu vyhodnotíme a upravíme. Bez extrémov a bez hádania.</p>
     <div class="hero-ctas anim a4">
       <a href="#kontakt" class="btn btn-primary">Chcem bezplatnú konzultáciu</a>
       <a href="#cennik" class="btn btn-ghost">Pozrieť balíky</a>
@@ -355,7 +371,7 @@ details p{animation:fadeIn .4s ease}
   <div class="wrap">
     <span class="eyebrow reveal">Kto sme</span>
     <h2 class="reveal">Prečo „hybrid“?</h2>
-    <p class="lead reveal">Sme pár v živote aj v tréningu a spolu vedieme fitness centrum v Prešove. „Hybrid“ pre nás znamená dve veci:</p>
+    <p class="lead reveal">Sme pár v živote aj v tréningu a sme majitelia Ant Fitgym v Prešove. „Hybrid“ pre nás znamená dve veci:</p>
     <div class="grid g2 why" style="margin-top:26px">
       <div class="reveal card"><div class="num">2</div><h3>Dvaja tréneri, jeden plán</h3><p class="muted">Na tvoj plán sa pozrú dve hlavy. Spolu ti zostavíme tréning aj stravu, ktoré do seba zapadajú.</p></div>
       <div class="reveal d1 card"><div class="num">⇄</div><h3>Online aj osobne</h3><p class="muted">Trénuj online odkiaľkoľvek, osobne s nami v Prešove, alebo kombinuj oboje. Plán aj progres máš stále v jednej appke.</p></div>
@@ -366,7 +382,7 @@ details p{animation:fadeIn .4s ease}
         <div>
           <h3>Bc. Tomáš Čorba</h3>
         </div>
-        <p class="muted">Osobný tréner a spolumajiteľ fitness centra v Prešove. Pomáham ľuďom zhodiť tuk, nabrať silu a postavu bez extrémov. Stavím na poctivý silový tréning, jasný plán a pravidelnú kontrolu, aby si presne vedel, čo robiť a prečo.</p>
+        <p class="muted">Osobný tréner a majiteľ Ant Fitgym v Prešove. Pomáham ľuďom zhodiť tuk, nabrať silu a postavu bez extrémov. Stavím na poctivý silový tréning, jasný plán a pravidelnú kontrolu, aby si presne vedel, čo robiť a prečo.</p>
         <a class="ig" href="https://instagram.com/coch_big" target="_blank" rel="noopener">@coch_big →</a>
       </div>
       <div class="reveal d1 card coach">
@@ -374,22 +390,27 @@ details p{animation:fadeIn .4s ease}
         <div>
           <h3>Mgr. Nikoletta Szabóová</h3>
         </div>
-        <p class="muted">Trénerka a spolumajiteľka fitness centra v Prešove. Pomáha klientom vybudovať silné a zdravé telo s prístupom, ktorý sa dá dlhodobo udržať v bežnom živote, bez drastických diét a výčitiek.</p>
+        <p class="muted">Trénerka a majiteľka Ant Fitgym v Prešove. Pomáha klientom vybudovať silné a zdravé telo s prístupom, ktorý sa dá dlhodobo udržať v bežnom živote, bez drastických diét a výčitiek.</p>
         <a class="ig" href="https://instagram.com/nszaboova" target="_blank" rel="noopener">@nszaboova →</a>
       </div>
     </div>
+    <a class="igjoint reveal" href="https://instagram.com/hybrid_coaching_sk" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg><span>Sleduj nás spolu na Instagrame <b>@hybrid_coaching_sk</b></span></a>
   </div>
 </section>
 
 <section class="app">
   <div class="wrap">
     <div class="app-head">
-      <span class="eyebrow reveal">Vlastná appka ANT Hybrid Coach</span>
+      <span class="eyebrow reveal">Vlastná appka Hybrid Coach</span>
       <h2 class="reveal">Tvoj tréner v mobile</h2>
       <p class="lead reveal">Žiadne PDF, ktoré sa stratia v galérii. Tréningy, strava aj progres máš v jednej appke, ktorú sme vyvinuli pre našich klientov.</p>
+      <div class="stores reveal">
+        <button type="button" class="store" data-store="App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><small>Stiahni v</small>App Store</span></button>
+        <button type="button" class="store" data-store="Google Play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5v17L19 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span><small>Stiahni na</small>Google Play</span></button>
+      </div>
     </div>
     <div class="shots">
-      <figure class="shot reveal"><div class="frame"><img src="img/app-nastenka.jpg" alt="Nástenka klienta v appke ANT Hybrid Coach" loading="lazy"></div><figcaption><b>Tvoja nástenka</b>Najbližší tréning, štatistiky a denný príjem na jednom mieste.</figcaption></figure>
+      <figure class="shot reveal"><div class="frame"><img src="img/app-nastenka.jpg" alt="Nástenka klienta v appke Hybrid Coach" loading="lazy"></div><figcaption><b>Tvoja nástenka</b>Najbližší tréning, štatistiky a denný príjem na jednom mieste.</figcaption></figure>
       <figure class="shot reveal d1"><div class="frame"><img src="img/app-trening.jpg" alt="Zápis tréningu v appke" loading="lazy"></div><figcaption><b>Zápis tréningu</b>Série, opakovania a váhy, plus čo si dal minule.</figcaption></figure>
       <figure class="shot reveal d2"><div class="frame"><img src="img/app-strava.jpg" alt="Jedálniček a kalórie v appke" loading="lazy"></div><figcaption><b>Strava a makrá</b>Jedálniček, kalórie a bielkoviny, sacharidy a tuky.</figcaption></figure>
       <figure class="shot reveal d3"><div class="frame"><img src="img/app-vaha.jpg" alt="Sledovanie váhy v appke" loading="lazy"></div><figcaption><b>Váha a progres</b>Graf váhy a pokrok týždeň po týždni.</figcaption></figure>
@@ -470,7 +491,7 @@ details p{animation:fadeIn .4s ease}
     <h2 class="reveal">Máš otázku?</h2>
     <div style="margin-top:30px">
       <details class="reveal"><summary>Je coaching vhodný aj pre začiatočníkov?</summary><p>Áno. Plán prispôsobíme tvojim skúsenostiam a ku každému cviku máš popis techniky. Technika sa dá skontrolovať aj z videa.</p></details>
-      <details class="reveal"><summary>Dá sa s vami trénovať aj osobne?</summary><p>Áno. Sme spolumajitelia fitness centra v Prešove, takže môžeš trénovať osobne s nami, iba online, alebo kombinovať oboje. Všetko dohodneme na bezplatnej konzultácii.</p></details>
+      <details class="reveal"><summary>Dá sa s vami trénovať aj osobne?</summary><p>Áno. Sme majitelia Ant Fitgym v Prešove, takže môžeš trénovať osobne s nami, iba online, alebo kombinovať oboje. Všetko dohodneme na bezplatnej konzultácii.</p></details>
       <details class="reveal"><summary>Potrebujem chodiť do fitka?</summary><p>Nie nevyhnutne. Plán vieme pripraviť do fitka aj na doma, podľa toho, aké vybavenie máš.</p></details>
       <details class="reveal"><summary>Ako funguje strava? Budem musieť vážiť jedlo?</summary><p>Strava je nastavená podľa tvojho cieľa a režimu. Nemusíš držať drastickú diétu ani jesť to, čo nemáš rád. Ako presne budeš stravu sledovať, sa dohodneme podľa toho, čo ti vyhovuje.</p></details>
       <details class="reveal"><summary>Ako rýchlo uvidím výsledky?</summary><p>Prvé zmeny v sile a energii väčšina klientov pocíti po 2–4 týždňoch. Viditeľné zmeny postavy prichádzajú zvyčajne po 6–12 týždňoch pravidelnej práce.</p></details>
@@ -531,7 +552,7 @@ details p{animation:fadeIn .4s ease}
           <div class="full"><button type="submit" class="btn btn-primary">Odoslať prihlášku</button></div>
         </div>
       </form>
-      <p class="alt">Radšej píšeš? <a href="https://ig.me/m/hybrid_coaching_sk" target="_blank" rel="noopener">Instagram</a> alebo <a href="mailto:info@hybrid-coaching.sk">info@hybrid-coaching.sk</a></p>
+      <p class="alt">Radšej píšeš? <a href="https://ig.me/m/hybrid_coaching_sk" target="_blank" rel="noopener">@hybrid_coaching_sk</a> alebo <a href="mailto:info@hybrid-coaching.sk">info@hybrid-coaching.sk</a></p>
     </div>
   </div>
 </section>
@@ -540,13 +561,14 @@ details p{animation:fadeIn .4s ease}
   <div class="wrap">
     <div>© <span id="y">2026</span> Hybrid Coaching • Prevádzkovateľ: ANT Kardiofitness s. r. o., IČO: 55323324</div>
     <div style="display:flex;gap:18px;flex-wrap:wrap">
-      <a href="https://instagram.com/hybrid_coaching_sk" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://instagram.com/hybrid_coaching_sk" target="_blank" rel="noopener">Instagram @hybrid_coaching_sk</a>
       <a href="/obchodne-podmienky.html">Obchodné podmienky</a>
       <a href="/ochrana-osobnych-udajov.html">Ochrana osobných údajov</a>
     </div>
   </div>
 </footer>
 
+<div class="toast" role="status" aria-live="polite"></div>
 <div class="mcta"><a href="#kontakt" class="btn btn-primary">Chcem bezplatnú konzultáciu</a></div>
 
 <script>
@@ -580,6 +602,9 @@ if(hp&&hero)hero.addEventListener('mousemove',function(e){var r=hero.getBounding
 document.querySelectorAll('.card').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();
  c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})});
 })();
+(function(){var t=document.querySelector('.toast'),h;
+document.querySelectorAll('.store').forEach(function(b){b.addEventListener('click',function(){
+ t.textContent='Aplikácia pre '+b.getAttribute('data-store')+' sa pripravuje. Čoskoro!';t.classList.add('show');clearTimeout(h);h=setTimeout(function(){t.classList.remove('show')},2800)})})})();
 </script>
 </body>
 </html>
