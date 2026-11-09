@@ -669,6 +669,9 @@ document.querySelectorAll('.card').forEach(function(c){c.addEventListener('mouse
 (function(){var t=document.querySelector('.toast'),h;
 document.querySelectorAll('.store').forEach(function(b){b.addEventListener('click',function(){
  t.textContent='Appka na Google Play bude čoskoro. Zatiaľ ti otvárame webovú verziu app.hybrid-coaching.sk';t.classList.add('show');clearTimeout(h);h=setTimeout(function(){t.classList.remove('show')},4000)})})})();
+(function(){var m={beginner:'Hybrid Beginner (180 €)',intermediate:'Hybrid Intermediate (129 €)',advanced:'Hybrid Advanced (99 €)',online:'Online Coaching (89 €)'};
+try{var q=new URLSearchParams(location.search),k=q.get('plan'),sel=document.getElementById('f-balik');if(k&&m[k]&&sel)sel.value=m[k];
+var z=q.get('zdroj')||q.get('from'),zs=document.getElementById('f-zdroj');if(z==='antfitgym'&&zs)zs.value='Ant Fitgym';}catch(e){}})();
 document.querySelectorAll('[data-plan]').forEach(function(a){a.addEventListener('click',function(){var sel=document.getElementById('f-balik');if(sel)sel.value=a.getAttribute('data-plan')})});
 </script>
 </body>
