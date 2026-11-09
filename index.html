@@ -309,6 +309,39 @@ details p{animation:fadeIn .4s ease}
 .toast{position:fixed;left:16px;right:16px;margin:0 auto;width:fit-content;bottom:28px;transform:translateY(20px);opacity:0;pointer-events:none;z-index:120;background:#16161f;border:1px solid var(--accent);color:var(--text);padding:14px 22px;border-radius:14px;font-weight:600;box-shadow:0 20px 50px -20px rgba(0,0,0,.9);transition:opacity .25s,transform .25s;text-align:center}
 .toast.show{opacity:1;transform:none}
 @media(max-width:760px){.toast{bottom:96px}}
+
+/* plans */
+.plans-head{text-align:center;max-width:720px;margin:0 auto}
+.plans-head .lead{margin:0 auto}
+.path{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#cfcfdc;flex-wrap:wrap;justify-content:center}
+.path span{padding:7px 14px;border:1px solid var(--line);border-radius:99px;background:var(--card)}
+.path span:first-child{border-color:var(--accent);color:#fff;background:rgba(139,92,246,.2)}
+.path i{width:28px;height:2px;background:linear-gradient(90deg,var(--accent),#e879f9);position:relative}
+.path i::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left-color:#e879f9;border-right:0}
+.plans{display:grid;grid-template-columns:1.12fr 1fr 1fr;gap:18px;margin-top:44px;align-items:stretch}
+.plan{display:flex;flex-direction:column;padding:30px 26px}
+.plan.featured{transform:none;padding-top:38px}
+@media(min-width:1000px){.plan.featured{margin:-14px 0}}
+.plan-name{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px}
+.plan h3{font-size:21px;line-height:1.25;margin-bottom:10px}
+.plan .muted,.online-plan .muted{font-size:15px}
+.plan .price,.online-plan .price{font-size:44px;font-weight:900;margin:22px 0 4px;letter-spacing:-.02em}
+.plan ul,.online-plan ul{list-style:none;margin:16px 0 18px;flex:1}
+.plan li,.online-plan li{padding:7px 0 7px 26px;position:relative;color:#d8d8e4;font-size:15px}
+.plan li::before,.online-plan li::before{content:"";position:absolute;left:0;top:13px;width:14px;height:8px;border-left:2px solid var(--accent2);border-bottom:2px solid var(--accent2);transform:rotate(-45deg)}
+.plan li b{color:#fff}
+.for{font-size:14px;color:var(--muted);font-style:italic;margin-bottom:18px}
+.plan .btn,.online-plan .btn{width:100%}
+.plan.featured{border-color:transparent;background:linear-gradient(180deg,rgba(139,92,246,.18),transparent 45%) padding-box,linear-gradient(var(--card),var(--card)) padding-box,conic-gradient(from var(--ang),#8b5cf6,#e879f9,#4f46e5,#8b5cf6) border-box;border:1.5px solid transparent;animation:spin 5s linear infinite;box-shadow:0 30px 70px -30px rgba(139,92,246,.6)}
+.plan .badge{position:absolute;top:-13px;left:26px}
+.online-plan{margin-top:22px;display:grid;grid-template-columns:1.5fr 1fr;gap:32px;align-items:center;padding:30px 30px;background:linear-gradient(120deg,rgba(79,70,229,.14),var(--card) 55%)}
+.online-plan h3{font-size:22px;margin-bottom:10px}
+.online-plan ul{margin-bottom:0}
+.op-buy{border-left:1px solid var(--line);padding-left:32px}
+.op-buy .price{margin-top:0}
+@media(max-width:480px){.path{gap:6px;font-size:10.5px;letter-spacing:.04em;flex-wrap:nowrap}.path span{padding:6px 9px}.path i{width:14px}}
+.plans-note{text-align:center;color:var(--muted);font-size:14px;margin-top:24px}
+@media(max-width:1000px){.plans{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}.online-plan{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}.op-buy{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:22px}}
 </style>
 </head>
 <body>
@@ -336,7 +369,7 @@ details p{animation:fadeIn .4s ease}
     <p class="lead anim a3">Tréning a strava na mieru, online odkiaľkoľvek alebo osobne v našom Ant Fitgym v Prešove. Plán máš v appke, každý týždeň ho spolu vyhodnotíme a upravíme. Bez extrémov a bez hádania.</p>
     <div class="hero-ctas anim a4">
       <a href="#kontakt" class="btn btn-primary">Chcem bezplatnú konzultáciu</a>
-      <a href="#cennik" class="btn btn-ghost">Pozrieť balíky</a>
+      <a href="#cennik" class="btn btn-ghost">Pozrieť plány</a>
     </div>
     <div class="trust anim a5">
       <div><b>Desiatky</b>odtrénovaných klientov</div>
@@ -441,50 +474,78 @@ details p{animation:fadeIn .4s ease}
 
 <section id="cennik">
   <div class="wrap">
-    <span class="eyebrow reveal">Cenník</span>
-    <h2 class="reveal">Vyber si balík</h2>
-    <p class="lead reveal">Online balíky sú na 1 mesiac a môžeš ich kedykoľvek predĺžiť.</p>
-    <div class="grid g3" style="margin-top:40px">
-      <div class="reveal card price-card">
-        <h3>Basic</h3>
-        <p class="muted">Pre samostatných, ktorí chcú hlavne plán</p>
-        <div class="price">49 €<small> / mesiac</small></div>
-        <ul>
-          <li>Tréningový plán na mieru v appke</li>
-          <li>Popis a videá techniky cvikov</li>
-          <li>Mesačný check-in a úprava plánu</li>
-          <li>Otázky cez chat, odpoveď do 48 h</li>
-        </ul>
-        <a href="#kontakt" class="btn btn-ghost">Mám záujem</a>
-      </div>
-      <div class="reveal d1 card price-card featured">
-        <span class="badge">Najobľúbenejší</span>
-        <h3>Standard</h3>
-        <p class="muted">Tréning + strava = najrýchlejšie výsledky</p>
-        <div class="price">89 €<small> / mesiac</small></div>
-        <ul>
-          <li>Všetko z Basic</li>
-          <li>Nastavenie stravy podľa cieľa + jednoduchý jedálniček</li>
-          <li>Týždenný check-in (váha, fotky, miery) a úprava plánu</li>
-          <li>Kontrola techniky z tvojich videí</li>
-          <li>Chat, odpoveď do 24 h</li>
-        </ul>
-        <a href="#kontakt" class="btn btn-primary">Mám záujem</a>
-      </div>
-      <div class="reveal d2 card price-card">
-        <h3>Premium</h3>
-        <p class="muted">Maximálna podpora</p>
-        <div class="price">149 €<small> / mesiac</small></div>
-        <ul>
-          <li>Všetko zo Standard</li>
-          <li>Úvodný videohovor + 1× mesačne videohovor</li>
-          <li>Prednostné odpovede v ten istý deň</li>
-          <li>1 osobný tréning v Prešove mesačne (alebo videohovor navyše)</li>
-          <li>Priebežné úpravy plánu podľa potreby</li>
-        </ul>
-        <a href="#kontakt" class="btn btn-ghost">Mám záujem</a>
-      </div>
+    <div class="plans-head">
+      <span class="eyebrow reveal">Plány</span>
+      <h2 class="reveal">Začni s nami. Skonči samostatný.</h2>
+      <p class="lead reveal">Každý plán ťa posúva o krok bližšie k tomu, aby si trénoval sebavedomo a bez nás. Konzultácia je zadarmo, spolu nájdeme ten správny.</p>
+      <div class="path reveal" aria-hidden="true"><span>Beginner</span><i></i><span>Intermediate</span><i></i><span>Advanced</span></div>
     </div>
+    <div class="plans">
+      <article class="reveal card plan featured">
+        <span class="badge">Najvýhodnejší</span>
+        <div class="plan-top">
+          <div class="plan-name">Hybrid Beginner</div>
+          <h3>Prvý krok, po ktorom už nebudeš začiatočník.</h3>
+          <p class="muted">Do fitka nemusíš chodiť sám a nemusíš hádať, či cvičíš správne. Dvakrát do týždňa si s nami: ukážeme ti každý cvik, opravíme každý pohyb a postavíme ti základ, na ktorom budeš stavať roky.</p>
+        </div>
+        <div class="price">180 €<small> / mesiac</small></div>
+        <ul>
+          <li><b>8 osobných tréningov mesačne</b> s trénerom po boku</li>
+          <li>Plán, strava a progres v appke Hybrid Coach, presne podľa teba</li>
+          <li>Každý týždeň spätná väzba, každý mesiac InBody: vidíš, že to funguje</li>
+        </ul>
+        <p class="for">Pre teba, ak začínaš a chceš to robiť poriadne od prvého dňa.</p>
+        <a href="#kontakt" class="btn btn-primary" data-plan="Hybrid Beginner (180 €)">Chcem začať správne</a>
+      </article>
+      <article class="reveal d1 card plan">
+        <div class="plan-top">
+          <div class="plan-name">Hybrid Intermediate</div>
+          <h3>Už vieš ako. Teraz ideme po výsledky.</h3>
+          <p class="muted">Základy máš, ale stojíš na mieste? Posunieme ťa ďalej. Na spoločných tréningoch pridáme nové výzvy a ťažšie váhy, medzi nimi trénuješ sám s plánom, ktorý presne vie, čo máš robiť.</p>
+        </div>
+        <div class="price">129 €<small> / mesiac</small></div>
+        <ul>
+          <li><b>4 osobné tréningy mesačne</b> na posun a kontrolu</li>
+          <li>Video kontrola techniky aj z tréningov, kde si sám</li>
+          <li>Strava, týždenné check-iny a InBody, aby progres nebol náhoda</li>
+        </ul>
+        <p class="for">Pre teba, ak chceš trénovať samostatne, ale s istotou, že ideš správnym smerom.</p>
+        <a href="#kontakt" class="btn btn-ghost" data-plan="Hybrid Intermediate (129 €)">Chcem sa posunúť</a>
+      </article>
+      <article class="reveal d2 card plan">
+        <div class="plan-top">
+          <div class="plan-name">Hybrid Advanced</div>
+          <h3>Ty trénuješ. My dbáme, aby každý tréning mal zmysel.</h3>
+          <p class="muted">Do fitka chodíš pravidelne a cviky ovládaš. Chýba ti len systém a niekto, kto sa na to pozrie zvonka. Plán, ktorý ťa nenechá zaspať na vavrínoch, a kontrola, ktorá odhalí, čo by si sám nevidel.</p>
+        </div>
+        <div class="price">99 €<small> / mesiac</small></div>
+        <ul>
+          <li><b>2 osobné tréningy mesačne</b> na kontrolu a nové podnety</li>
+          <li>Plán s progresiou, strava a týždenné úpravy v appke</li>
+          <li>Video kontroly a InBody, aby si vedel, kde presne si</li>
+        </ul>
+        <p class="for">Pre teba, ak chceš maximum zo seba bez toho, aby si stratil samostatnosť.</p>
+        <a href="#kontakt" class="btn btn-ghost" data-plan="Hybrid Advanced (99 €)">Chcem viac zo seba</a>
+      </article>
+    </div>
+    <article class="reveal card online-plan">
+      <div class="op-text">
+        <div class="plan-name">Online Coaching</div>
+        <h3>Tvoj tréner v mobile, nech si kdekoľvek.</h3>
+        <p class="muted">Nie si z Prešova? Nevadí. Plán, strava, kontrola techniky aj spätná väzba prídu za tebou, do fitka, domov aj na dovolenku. Dvakrát do mesiaca sa vidíme na videohovore, aby sme ťa mali stále pod kontrolou.</p>
+        <ul>
+          <li>Plán na mieru a progres v appke Hybrid Coach</li>
+          <li>Strava a týždenný check-in s úpravou plánu</li>
+          <li>Video kontroly techniky a 2× mesačne videohovor</li>
+        </ul>
+      </div>
+      <div class="op-buy">
+        <div class="price">89 €<small> / mesiac</small></div>
+        <p class="for">Pre teba, ak chceš kvalitný coaching bez ohľadu na to, kde bývaš.</p>
+        <a href="#kontakt" class="btn btn-primary" data-plan="Online Coaching (89 €)">Chcem trénovať online</a>
+      </div>
+    </article>
+    <p class="plans-note reveal">Všetky plány sú na 1 mesiac a môžeš ich kedykoľvek predĺžiť alebo zmeniť.</p>
   </div>
 </section>
 
@@ -498,8 +559,8 @@ details p{animation:fadeIn .4s ease}
       <details class="reveal"><summary>Potrebujem chodiť do fitka?</summary><p>Nie nevyhnutne. Plán vieme pripraviť do fitka aj na doma, podľa toho, aké vybavenie máš.</p></details>
       <details class="reveal"><summary>Ako funguje strava? Budem musieť vážiť jedlo?</summary><p>Strava je nastavená podľa tvojho cieľa a režimu. Nemusíš držať drastickú diétu ani jesť to, čo nemáš rád. Ako presne budeš stravu sledovať, sa dohodneme podľa toho, čo ti vyhovuje.</p></details>
       <details class="reveal"><summary>Ako rýchlo uvidím výsledky?</summary><p>Prvé zmeny v sile a energii väčšina klientov pocíti po 2–4 týždňoch. Viditeľné zmeny postavy prichádzajú zvyčajne po 6–12 týždňoch pravidelnej práce.</p></details>
-      <details class="reveal"><summary>Ako prebieha platba?</summary><p>Spôsob platby si dohodneme po bezplatnej konzultácii. Balík platíš vždy na mesiac dopredu.</p></details>
-      <details class="reveal"><summary>Môžem coaching kedykoľvek ukončiť?</summary><p>Áno. Balík je na 1 mesiac a ak ho nepredĺžiš, jednoducho skončí.</p></details>
+      <details class="reveal"><summary>Ako prebieha platba?</summary><p>Spôsob platby si dohodneme po bezplatnej konzultácii. Plán platíš vždy na mesiac dopredu.</p></details>
+      <details class="reveal"><summary>Môžem coaching kedykoľvek ukončiť?</summary><p>Áno. Plán je na 1 mesiac a ak ho nepredĺžiš, jednoducho skončí.</p></details>
     </div>
   </div>
 </section>
@@ -544,8 +605,8 @@ details p{animation:fadeIn .4s ease}
             <textarea id="f-zdravie" name="zranenia_obmedzenia" placeholder="Napr. bolesti chrbta, operácia kolena… Ak nič, nechaj prázdne."></textarea></div>
 
           <div class="sec-title">Spolupráca</div>
-          <div class="field"><label for="f-balik">Ktorý balík ťa zaujíma?</label>
-            <select id="f-balik" name="balik"><option>Ešte neviem</option><option>Basic (49 €)</option><option>Standard (89 €)</option><option>Premium (149 €)</option></select></div>
+          <div class="field"><label for="f-balik">Ktorý plán ťa zaujíma?</label>
+            <select id="f-balik" name="balik"><option>Ešte neviem</option><option>Hybrid Beginner (180 €)</option><option>Hybrid Intermediate (129 €)</option><option>Hybrid Advanced (99 €)</option><option>Online Coaching (89 €)</option></select></div>
           <div class="field"><label for="f-zdroj">Ako si sa o nás dozvedel/a? <span class="opt">(nepovinné)</span></label>
             <select id="f-zdroj" name="zdroj"><option value="">Vyber…</option><option>Instagram</option><option>Od známeho</option><option>Ant Fitgym</option><option>Google</option><option>Iné</option></select></div>
           <div class="field full"><label for="f-poznamka">Chceš nám ešte niečo povedať? <span class="opt">(nepovinné)</span></label>
@@ -608,6 +669,7 @@ document.querySelectorAll('.card').forEach(function(c){c.addEventListener('mouse
 (function(){var t=document.querySelector('.toast'),h;
 document.querySelectorAll('.store').forEach(function(b){b.addEventListener('click',function(){
  t.textContent='Appka na Google Play bude čoskoro. Zatiaľ ti otvárame webovú verziu app.hybrid-coaching.sk';t.classList.add('show');clearTimeout(h);h=setTimeout(function(){t.classList.remove('show')},4000)})})})();
+document.querySelectorAll('[data-plan]').forEach(function(a){a.addEventListener('click',function(){var sel=document.getElementById('f-balik');if(sel)sel.value=a.getAttribute('data-plan')})});
 </script>
 </body>
 </html>
