@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /dakujeme.html
+
+Sitemap: https://hybrid-coaching.sk/sitemap.xml
